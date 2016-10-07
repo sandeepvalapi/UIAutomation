@@ -4,7 +4,7 @@
 
 	<groupId>DiscoverCucumber</groupId>
 	<artifactId>discovercucumber</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>${project.version}</version>
 	<packaging>jar</packaging>
 
 	<name>discovercucumber</name>
@@ -12,6 +12,7 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.version>0.0.1-SNAPSHOT</project.version>
 	</properties>
 
 	<dependencies>

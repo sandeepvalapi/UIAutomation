@@ -10,10 +10,12 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import cucumber.annotation.en.Given;
 import cucumber.annotation.en.Then;
 import cucumber.annotation.en.When;
+import junit.framework.Assert;
 
 public class OutlineStepDefination {
 
 	private static WebDriver driver = null;
+	String webContent = null;
 
 	@Given("^I am a user$")
 	public void I_am_a_user() {
@@ -35,6 +37,25 @@ public class OutlineStepDefination {
 	public void Error_message_is_shown() {
 		driver.findElement(By.className("response")).getText().equals("ERROR: Invalid login credentials.");
 
+	}
+
+	@Given("^I have navigated to company site$")
+	public void I_have_navigated_to_company_site() {
+		System.setProperty("webdriver.chrome.driver", "C:/SandeepFiles/chromedriver_win32/chromedriver.exe");
+		driver = new ChromeDriver();
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		driver.get("http://www.whitebay.in");
+	}
+
+	@When("^I can see the Home page$")
+	public void I_can_see_the_Home_page() {
+		webContent = driver.findElement(By.xpath("//*[@id='home']/div/div[2]/h1")).getText();
+	}
+
+	@Then("^I should see welcome message$")
+	public void I_should_see_welcome_message() {
+		webContent.equals("We leverage technology to accomplish great vision.");
+		Assert.assertEquals("We leverage technology to accomplish great vision.", webContent);
 	}
 
 	public static void main(String[] args) {
